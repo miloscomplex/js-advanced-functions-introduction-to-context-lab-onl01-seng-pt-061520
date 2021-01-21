@@ -81,9 +81,10 @@ function allWagesFor(employeeObj) {
 
   const total = (runningTotal, currentValue) => runningTotal + currentValue
 
-  employeeObj.timeInEvents.forEach( element => {
+  let pay = employeeObj.timeInEvents.map( element => {
     let amount = wagesEarnedOnDate(employeeObj, element.date)
     console.log("amount= " + amount);
   })
-  return payOwedForAllDates
+  console.log("pay= " + pay);
+//  return payOwedForAllDates
 }
