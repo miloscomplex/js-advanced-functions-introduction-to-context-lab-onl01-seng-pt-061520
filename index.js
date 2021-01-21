@@ -79,12 +79,31 @@ function wagesEarnedOnDate(employeeObj, date) {
 
 function allWagesFor(employeeObj) {
 
-  const total = (runningTotal, currentValue) => runningTotal + currentValue
-
   let pay = employeeObj.timeInEvents.map( element => {
-    let amount = wagesEarnedOnDate(employeeObj, element.date)
-    console.log("amount= " + amount);
+    return wagesEarnedOnDate(employeeObj, element.date)
   })
-  console.log("pay= " + pay);
-//  return payOwedForAllDates
+
+  const totalUp = (runningTotal, currentValue) => runningTotal + currentValue
+  return pay.reduce(totalUp)
+}
+
+function findEmployeeByFirstName(srcArray, firstName) {
+
+  function matchFirstName(employeeObj) {
+    return employeeObj.firstName === firstName
+  }
+
+  return srcArray.find(matchFirstName)
+}
+
+function calculatePayroll(employeesArray) {
+
+  let allEmployeesPay = employeesArray.map( employeeObj => {
+    return allWagesFor(employeeObj)
+  })
+  //console.log("allEmployeesPay= " + allEmployeesPay);
+  const totalUp = (runningTotal, currentValue) => runningTotal + currentValue
+  console.log(allEmployeesPay + "=allEmployeesPay");
+  return allEmployeesPay.reduce(totalUp)
+  // return sum of pay owed to all employees for all dates as numbers
 }
